@@ -34,7 +34,9 @@ jobs:
         run: playwright install
 
       - name: Run Blazor app
-        run: dotnet run --project BlazorApp1/BlazorApp1.csproj --urls http://localhost:5000 &
+        run: |
+          cd BlazorApp1
+          dotnet run --urls http://localhost:5000 &
         shell: pwsh
 
       - name: Wait for server to be ready
@@ -59,4 +61,6 @@ jobs:
         shell: pwsh
 
       - name: Run Playwright Tests
-        run: dotnet test PlaywrightTests/PlaywrightTests.csproj --no-build
+        run: |
+          cd ..
+          dotnet test PlaywrightTests/PlaywrightTests.csproj --no-build
