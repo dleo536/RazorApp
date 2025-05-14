@@ -30,7 +30,7 @@ namespace PlaywrightTests
             var context = await _browser.NewContextAsync();
             var page = await context.NewPageAsync();
 
-            await page.GotoAsync("http://localhost:5292/login");
+            await page.GotoAsync("http://localhost:5000/login");
             await Task.Delay(1000);
             // Fill in username and password using label-based selectors
             await page.GetByLabel("Username:").FillAsync("admin");
