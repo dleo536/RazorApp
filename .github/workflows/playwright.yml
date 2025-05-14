@@ -36,7 +36,7 @@ jobs:
       - name: Run Blazor app
         run: |
           cd BlazorApp1
-          dotnet run --urls http://localhost:5000 &
+          dotnet run &
         shell: pwsh
 
       - name: Wait for server to start
