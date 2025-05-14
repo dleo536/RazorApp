@@ -34,11 +34,23 @@ jobs:
         run: playwright install
 
       - name: Run Blazor app
-        run: dotnet run --project BlazorApp1/BlazorApp1.csproj --urls http://localhost:5292 &
+        run: dotnet run --project BlazorApp1/BlazorApp1.csproj --urls http://localhost:5292/login &
         shell: pwsh
 
-      - name: Wait for server to start
-        run: Start-Sleep -Seconds 10
+      - name: Wait for Blazor server to be ready
+        run: |
+          for ($i = 0; $i -lt 10; $i++) {
+            try {
+              $res = Invoke-WebRequest http://localhost:5000/login -UseBasicParsing -TimeoutSec 2
+              if ($res.StatusCode -eq 200) {
+                Write-Host "✅ Server is up!"
+                break
+              }
+            } catch {
+              Write-Host "⏳ Waiting for server..."
+              Start-Sleep -Seconds 2
+            }
+          }
         shell: pwsh
 
       - name: Run Playwright Tests

@@ -14,7 +14,7 @@ namespace PlaywrightTests
         public async Task Setup()
         {
             _playwright = await Playwright.CreateAsync();
-            _browser = await _playwright.Chromium.LaunchAsync(new() { Headless = false });
+            _browser = await _playwright.Chromium.LaunchAsync(new() { Headless = true });
         }
 
         [OneTimeTearDown]
