@@ -39,25 +39,8 @@ jobs:
           dotnet run --urls http://localhost:5000 &
         shell: pwsh
 
-      - name: Wait for server to be ready
-        run: |
-          $maxAttempts = 15
-          for ($i = 0; $i -lt $maxAttempts; $i++) {
-            try {
-              $response = Invoke-WebRequest http://localhost:5000/login -UseBasicParsing -TimeoutSec 2
-              if ($response.StatusCode -eq 200) {
-                Write-Host "✅ Server is up!"
-                break
-              }
-            } catch {
-              Write-Host "⏳ Waiting for Blazor app on http://localhost:5000..."
-              Start-Sleep -Seconds 2
-            }
-            if ($i -eq ($maxAttempts - 1)) {
-              Write-Error "❌ Server never responded."
-              exit 1
-            }
-          }
+      - name: Wait for server to start
+        run: Start-Sleep -Seconds 20
         shell: pwsh
 
       - name: Run Playwright Tests
