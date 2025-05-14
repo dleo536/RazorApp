@@ -4,7 +4,7 @@ This project is a practice run for utilizing ARIA roles when writing automation 
 
 Features
 
-- Blazor login page (`/login`)
+- Utilize Blazor to quickly create a testable UI
 - `@bind` inputs and `@onclick` button for login flow
 - Displays result message on success or failure
 - Playwright test using:
@@ -18,4 +18,10 @@ Features
 ```bash
 cd BlazorApp1
 dotnet run
+```
+
+====Run the test
+
+```bash
+dotnet test
 ```
