@@ -1,0 +1,40 @@
+﻿@page "/login"
+@rendermode InteractiveServer
+
+<h3>Login</h3>
+
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+    <div>
+        <label for="username">Username:</label><br />
+        <input id="username" @bind="username" /><br />
+    </div>
+
+    <div>
+        <label for="password">Password:</label><br />
+        <input id="password" type="password" @bind="password" /><br />
+    </div>
+
+    <button type="button" @onclick="HandleLogin">Log In</button>
+
+    <p style="color: green;">@status</p>
+</div>
+
+@code {
+    private string username = string.Empty;
+    private string password = string.Empty;
+    private string status = string.Empty;
+
+    private Task HandleLogin()
+    {
+        if (username == "admin" && password == "password")
+        {
+            status = "Login successful!";
+        }
+        else
+        {
+            status = "Invalid credentials.";
+        }
+
+        return Task.CompletedTask;
+    }
+}
