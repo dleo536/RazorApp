@@ -33,10 +33,14 @@ jobs:
       - name: Install Playwright browsers
         run: playwright install
 
+      - name: Install wait-on
+        run: npm install -g wait-on
+
       - name: Run Blazor app
         run: |
           cd BlazorApp1
           dotnet run &
+          wait-on http://localhost:5000
         shell: pwsh
 
       - name: Wait for server to start
