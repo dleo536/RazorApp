@@ -1,0 +1,7 @@
+bin/
+obj/
+.playwright/
+*.user
+*.suo
+*.log
+*.vs/

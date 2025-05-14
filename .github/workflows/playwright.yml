@@ -1,0 +1,45 @@
+name: Run Playwright Tests on Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --no-restore
+
+      - name: Publish Blazor app
+        run: dotnet publish BlazorApp1/BlazorApp1.csproj -c Release -o publish
+
+      - name: Install Playwright CLI
+        run: dotnet tool install --global Microsoft.Playwright.CLI
+
+      - name: Install Playwright browsers
+        run: playwright install
+
+      - name: Run Blazor app
+        run: dotnet run --project BlazorApp1/BlazorApp1.csproj --urls http://localhost:5292 &
+        shell: pwsh
+
+      - name: Wait for server to start
+        run: Start-Sleep -Seconds 10
+        shell: pwsh
+
+      - name: Run Playwright Tests
+        run: dotnet test PlaywrightTests/PlaywrightTests.csproj --no-build
