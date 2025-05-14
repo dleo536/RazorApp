@@ -34,7 +34,7 @@ jobs:
         run: playwright install
 
       - name: Run Blazor app
-        run: dotnet run --project BlazorApp1/BlazorApp1.csproj --urls http://localhost:5292/login &
+        run: dotnet run --project BlazorApp1/BlazorApp1.csproj --urls http://localhost:5292 &
         shell: pwsh
 
       - name: Wait for Blazor server to be ready

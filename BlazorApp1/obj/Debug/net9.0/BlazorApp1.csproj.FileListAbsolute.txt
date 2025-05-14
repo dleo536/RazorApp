@@ -72,3 +72,4 @@
 /Users/dannyleo/Workspace/kimley-horn-project2/MudApp/MyApplication/BlazorApp1/obj/Debug/net9.0/BlazorApp1.pdb
 /Users/dannyleo/Workspace/kimley-horn-project2/MudApp/MyApplication/BlazorApp1/obj/Debug/net9.0/BlazorApp1.genruntimeconfig.cache
 /Users/dannyleo/Workspace/kimley-horn-project2/MudApp/MyApplication/BlazorApp1/obj/Debug/net9.0/ref/BlazorApp1.dll
+/Users/dannyleo/Workspace/kimley-horn-project2/MudApp/MyApplication/BlazorApp1/obj/Debug/net9.0/BlazorApp1.sourcelink.json
