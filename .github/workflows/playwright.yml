@@ -39,12 +39,12 @@ jobs:
       - name: Run Blazor app from BlazorApp1 directory
         run: |
           cd BlazorApp1
-          dotnet run --urls=http://localhost:5000 > ../blazor.log 2>&1 &
+          dotnet run --urls=http://127.0.0.1:5000 > ../blazor.log 2>&1 &
 
           # Wait for the app to start by probing the port
           $maxRetries = 12
           $delaySeconds = 5
-          $url = "http://localhost:5000"
+          $url = "http://127.0.0.1:5000"
 
           for ($i = 0; $i -lt $maxRetries; $i++) {
             try {
