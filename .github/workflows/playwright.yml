@@ -37,18 +37,23 @@ jobs:
         run: dotnet run --project BlazorApp1/BlazorApp1.csproj --urls http://localhost:5000 &
         shell: pwsh
 
-      - name: Wait for Blazor server to be ready
+      - name: Wait for server to be ready
         run: |
-          for ($i = 0; $i -lt 10; $i++) {
+          $maxAttempts = 15
+          for ($i = 0; $i -lt $maxAttempts; $i++) {
             try {
-              $res = Invoke-WebRequest http://localhost:5000/login -UseBasicParsing -TimeoutSec 2
-              if ($res.StatusCode -eq 200) {
+              $response = Invoke-WebRequest http://localhost:5000/login -UseBasicParsing -TimeoutSec 2
+              if ($response.StatusCode -eq 200) {
                 Write-Host "✅ Server is up!"
                 break
               }
             } catch {
-              Write-Host "⏳ Waiting for server..."
+              Write-Host "⏳ Waiting for Blazor app on http://localhost:5000..."
               Start-Sleep -Seconds 2
+            }
+            if ($i -eq ($maxAttempts - 1)) {
+              Write-Error "❌ Server never responded."
+              exit 1
             }
           }
         shell: pwsh
