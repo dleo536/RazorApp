@@ -1,6 +1,6 @@
 BlazorApp – Blazor Login Demo with Playwright Testing
 
-This project is a practice run for utilizing ARIA roles when writing automation testing for web pages that might see a lot of changes. I also wanted to try out Blazor and get some experience working with making quick web programs.
+This project serves as a practical exercise in leveraging ARIA roles for automation testing of web pages that are subject to frequent changes. It also provided an opportunity to explore Blazor, enabling hands-on experience in developing rapid web applications using C# and Razor components.
 
 Features
 
