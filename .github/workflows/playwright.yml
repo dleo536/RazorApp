@@ -44,6 +44,4 @@ jobs:
         shell: pwsh
 
       - name: Run Playwright Tests
-        run: |
-          cd ..
-          dotnet test PlaywrightTests/PlaywrightTests.csproj --no-build
+        run: dotnet test
